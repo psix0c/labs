@@ -3,7 +3,6 @@
 
 #define R_MAX 10
 #define C_MAX 10
-
 int a[R_MAX][C_MAX];
 int r = 0;
 int c = 0;

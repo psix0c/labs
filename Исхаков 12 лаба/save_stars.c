@@ -24,7 +24,7 @@ int main() {
     for (int i = 0; i < n; ++i)
     {
         SetConsoleOutputCP(CP_UTF8);
-        printf("\n--- Ввод данных для звезды #%d ---\n", i + 1);
+        printf("\nВвод данных для звезды #%d\n", i + 1);
         printf("Координата центра X: ");
         scanf("%d", &stars[i].x);
         printf("Координата центра Y: ");

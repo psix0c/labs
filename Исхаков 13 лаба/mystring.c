@@ -1,69 +1,74 @@
-
-#include "mystring.h"
 #include <stddef.h>
 
 size_t my_strlen(const char *s) {
-    const char *p = s;
-    while (*p) {
-        p++;
+    if (s == NULL) return 0;
+    size_t length = 0;
+    while (s[length] != '\0') {
+        length++;
     }
-    return p - s;
+    return length;
 }
 
 char *my_strcpy(char *dest, const char *src) {
-    char *original_dest = dest;
-    while ((*dest++ = *src++)) {
+    if (dest == NULL || src == NULL) return dest;
+    size_t i;
+    for (i = 0; src[i] != '\0'; i++) {
+        dest[i] = src[i];
     }
-    return original_dest;
+    dest[i] = '\0';
+    return dest;
 }
 
 char *my_strcat(char *dest, const char *src) {
-    char *original_dest = dest;
-    while (*dest) {
-        dest++;
+    if (dest == NULL || src == NULL) return dest;
+    size_t dest_len = my_strlen(dest);
+    size_t i = 0;
+    while (src[i] != '\0') {
+        dest[dest_len + i] = src[i];
+        i++;
     }
-    while ((*dest++ = *src++)) {
-    }
-    return original_dest;
+    dest[dest_len + i] = '\0';
+    return dest;
 }
 
 int my_strcmp(const char *s1, const char *s2) {
-    while (*s1 && (*s1 == *s2)) {
-        s1++;
-        s2++;
+    if (s1 == NULL || s2 == NULL) return 0;
+    size_t i = 0;
+    while (s1[i] == s2[i]) {
+        if (s1[i] == '\0') {
+            return 0;
+        }
+        i++;
     }
-    return *(const unsigned char*)s1 - *(const unsigned char*)s2;
+    return (unsigned char)s1[i] - (unsigned char)s2[i];
 }
 
 char *my_strchr(const char *s, int c) {
-    while (*s != '\0') {
-        if (*s == c) {
-            return (char *)s;
+    if (s == NULL) return NULL;
+    for (size_t i = 0; s[i] != '\0'; i++) {
+        if (s[i] == (char)c) {
+            return (char *)&s[i];
         }
-        s++;
     }
     if (c == '\0') {
-        return (char *)s;
+        return (char *)&s[my_strlen(s)];
     }
     return NULL;
 }
 
 char *my_strstr(const char *haystack, const char *needle) {
-    if (*needle == '\0') {
+    if (haystack == NULL || needle == NULL) return NULL;
+    if (needle[0] == '\0') {
         return (char *)haystack;
     }
-
-    while (*haystack != '\0') {
-        const char *h = haystack;
-        const char *n = needle;
-        while (*n != '\0' && *h == *n) {
-            h++;
-            n++;
+    for (size_t i = 0; haystack[i] != '\0'; i++) {
+        size_t j = 0;
+        while (needle[j] != '\0' && haystack[i + j] == needle[j]) {
+            j++;
         }
-        if (*n == '\0') {
-            return (char *)haystack;
+        if (needle[j] == '\0') {
+            return (char *)&haystack[i];
         }
-        haystack++;
     }
     return NULL;
 }

@@ -13,7 +13,7 @@ struct S
 void draw(const struct S* s, int num)
 {
     SetConsoleOutputCP(CP_UTF8);
-    printf("\n--- Звезда #%d ---\n", num);
+    printf("\nЗвезда #%d\n", num);
     printf("Центр: (%d, %d)\n", s->x, s->y);
     printf("Цвет (RGB): (%d, %d, %d)\n", s->r, s->g, s->b);
     printf("Толщина контура: %d\n", s->w);

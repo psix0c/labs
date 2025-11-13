@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
-
+#include <windows.h>
 void p(char *s, FILE *f) {
     char *word = strtok(s, " \n\r\t");
     int first = 1;
@@ -41,7 +41,7 @@ void p(char *s, FILE *f) {
 }
 
 int main() {
-    setlocale(LC_ALL, "");
+    SetConsoleOutputCP(CP_UTF8);
 
     FILE *fin = fopen("input.txt", "rt");
     if (!fin) {
